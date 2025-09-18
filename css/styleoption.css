@@ -154,24 +154,7 @@ add-btn::after {
   align-items: center;
   z-index: 100;
 }
-.modal {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
 
-.modal button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  background: #fff;
-  cursor: pointer;
-  font-weight: bold;
-}
 .popup {
   background: #111;
   padding: 50px;
