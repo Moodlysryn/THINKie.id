@@ -69,8 +69,9 @@ add-btn::after {
 
 .icon-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 40px;
 }
 
 .fa-note-sticky {
@@ -118,13 +119,11 @@ add-btn::after {
 .menu-icons {
   display: flex;
   justify-content: center;
-  gap: 20px; /* atur jarak antar card */
-  margin: 20px 0;
+  gap: 0;
 }
 
 .icon-box {
   margin-top: 30px;
-  gap: 30px;
   color: #fff;
   font-size: 20px;
   align-items: center;
