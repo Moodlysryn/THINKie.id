@@ -18,12 +18,26 @@ body {
   max-width: 350px;
   width: 100%;
 }
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
 .profile-img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
+}
+
+.upload-icon i {
+  font-size: 16px;
+  color: #333;
+}
+
+input[type="file"] {
+  display: none; /* sembunyikan file input */
 }
 p {
   font-size: 12px;
@@ -45,6 +59,10 @@ p {
 .btn-group {
   margin-bottom: 12px;
   margin-top: 260px;
+}
+a {
+  text-decoration: none; /* hilangkan underline */
+  color: white; /* biar warnanya ikut parent (misalnya tombol) */
 }
 .btn {
   background: #000;

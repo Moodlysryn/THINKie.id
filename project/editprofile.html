@@ -16,15 +16,29 @@
   </head>
   <body>
     <div class="container">
-      <!-- Back icon -->
+      <div class="profile-container">
+        <img
+          src="../pct/profile.jpeg"
+          alt="profile"
+          class="profile-img"
+          id="fileImage"
+          class="profile-img"
+        />
+        <label for="fileUpload" class="upload-icon">
+          <i class="fa-solid fa-plus"></i>
+        </label>
+        <input
+          type="file"
+          id="fileUpload"
+          accept="image/*"
+          onchange="previewImage(event)"
+        />
+      </div>
       <div class="back-btn">
         <a href="../project/profile.html"
           ><i class="fa-solid fa-arrow-left"></i
         ></a>
       </div>
-
-      <!-- Profile Image -->
-      <img src="../pct/profile.jpeg" alt="profile" class="profile-img" />
 
       <!-- Input fields -->
       <input type="text" class="input-box" placeholder="Edit Username" />
@@ -33,5 +47,14 @@
       <!-- Save button -->
       <a href="../project/dashboard.html"><button class="btn">SAVE</button></a>
     </div>
+    <script>
+      function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          document.getElementById("profileImage").src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
   </body>
 </html>

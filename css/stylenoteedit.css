@@ -20,7 +20,7 @@ body {
   font-size: 25px;
 }
 .header i {
-  margin-left: 45px;
+  margin-left: 15px;
   cursor: pointer;
 }
 .editor {
@@ -41,6 +41,7 @@ body {
   font-size: 22px;
   font-weight: bold;
   color: white;
+  outline: none;
 }
 textarea {
   width: 100%;
@@ -51,7 +52,6 @@ textarea {
   font-size: 16px;
   resize: none;
   outline: none;
-  left: 50px;
 }
 .toolbar {
   position: fixed;
@@ -66,14 +66,7 @@ textarea {
   gap: 15px;
   font-size: 14px;
   min-width: 250px;
-  justify-content: space-between;
-  align-items: center;
 }
-.tools {
-  display: flex;
-  gap: 12px;
-}
-
 .toolbar button {
   background: none;
   border: none;
@@ -82,9 +75,12 @@ textarea {
 }
 .link-btn {
   padding: 10px;
-  background: #fff;
+  background: #f1f1f1;
+  position: absolute;
   margin-bottom: 10px;
+  left: 320px;
   transform: translateY(50%);
+  background: #f1f1f1;
   padding: 10px;
   border-radius: 50%;
   border: none;
