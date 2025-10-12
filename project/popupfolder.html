@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Folder</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/foder2.css" />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="popup">
+      <h2>FOLDER</h2>
+
+      <div class="folder-list">
+        <label data-link="privatenote.html"
+          ><i class="far fa-folder"></i> Diary</label
+        >
+        <label data-link="privatelist.html"
+          ><i class="far fa-folder"></i> School task</label
+        >
+        <label data-link="publicnote.html"
+          ><i class="far fa-folder"></i> Home do</label
+        >
+        <label data-link="publiclist.html"
+          ><i class="far fa-folder"></i> Self reward</label
+        >
+      </div>
+
+      <div class="btn-group">
+        <button id="cancelBtn" class="cancel">CANCEL</button>
+        <button id="saveBtn" class="save">SAVE</button>
+      </div>
+    </div>
+
+    <script>
+      const folders = document.querySelectorAll(".folder-list label");
+      const saveBtn = document.getElementById("saveBtn");
+      const cancelBtn = document.getElementById("cancelBtn");
+      let selectedLink = "";
+
+      // pilih folder
+      folders.forEach((folder) => {
+        folder.addEventListener("click", () => {
+          folders.forEach((f) => f.classList.remove("selected"));
+          folder.classList.add("selected");
+          selectedLink = folder.getAttribute("data-link");
+        });
+      });
+
+      // tombol save → pindah ke halaman
+      saveBtn.addEventListener("click", () => {
+        if (selectedLink) {
+          window.location.href = selectedLink;
+        } else {
+          alert("Pilih folder terlebih dahulu!");
+        }
+      });
+
+      // tombol cancel → kembali ke halaman utama
+      cancelBtn.addEventListener("click", () => {
+        window.location.href = "privatenote.html";
+      });
+    </script>
+  </body>
+</html>

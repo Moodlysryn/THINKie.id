@@ -15,141 +15,105 @@
     <link rel="stylesheet" href="../css/stylenoteedit.css" />
   </head>
   <body>
-    <div class="editor-panel" role="application">
-      <div class="topbar">
-        <i class="fa-solid fa-image" title="Insert image"></i>
-        <i class="fa-solid fa-bell" title="Notifications"></i>
-      </div>
-      <div class="tittle-page">
-        <h5 id="Title" contenteditable="true">Tittle</h5>
-      </div>
-      <div
-        id="editor"
-        class="content"
-        contenteditable="true"
-        data-placeholder="Your text..."
-      ></div>
+    <div id="popupContainer"></div>
+    <div class="screen">
+      <header>
+        <div class="title-section">
+          <div
+            class="title-input"
+            contenteditable="true"
+            placeholder="Title"
+          ></div>
+          <div
+            class="subtitle"
+            contenteditable="true"
+            placeholder="Your text.."
+          ></div>
+        </div>
+        <div class="icons">
+          <i class="fa-solid fa-image icon" onclick="openPopup()"></i>
+          <i class="fa-regular fa-bell icon"></i>
+        </div>
+      </header>
 
       <!-- footer contains link button + toolbar-->
 
-      <div class="toolbar" role="toolbar" aria-label="Formatting toolbar">
-        <button data-cmd="formatBlock" data-value="h1" title="H1">H1</button>
-        <button data-cmd="formatBlock" data-value="h2" title="H2">H2</button>
-        <button data-cmd="fontSize" data-value="3" title="Aa">Aa</button>
-        <button data-cmd="bold" title="Bold"><b>B</b></button>
-        <button data-cmd="italic" title="Italic"><i>I</i></button>
-        <button data-cmd="underline" title="Underline"><u>U</u></button>
-        <button data-cmd="strikeThrough" title="Strike">
+      <div class="toolbar">
+        <button onclick="execCmd('formatBlock','<h1>')">H1</button>
+        <button onclick="execCmd('formatBlock','<h2>')">H2</button>
+        <button onclick="execCmd('removeFormat')">Aa</button>
+        <button onclick="execCmd('bold')"><b>B</b></button>
+        <button onclick="execCmd('italic')"><i>I</i></button>
+        <button onclick="execCmd('underline')"><u>U</u></button>
+        <button onclick="execCmd('strikeThrough')">
           <i class="fa-solid fa-strikethrough"></i>
         </button>
       </div>
     </div>
-
     <script>
-      // Basic rich text toolbar using document.execCommand (simple demo)
-      (function () {
-        const titleEl = document.getElementById("Title");
-        const STORAGE_KEY = "Title";
+      fetch("../project/popupfolder.html")
+        .then((res) => {
+          if (!res.ok)
+            throw new Error("File popupfolder.html tidak ditemukan!");
+          return res.text();
+        })
+        .then((html) => {
+          document.getElementById("popupContainer").innerHTML = html;
+        })
+        .catch((err) => console.error(err));
 
-        const editor = document.getElementById("editor");
-        const toolbar = document.querySelector(".toolbar");
-        const linkBtn = document.getElementById("linkBtn");
-
-        // Focus editor when user clicks inside the panel (UX)
-        document
-          .querySelector(".editor-panel")
-          .addEventListener("click", (e) => {
-            if (
-              !e.target.closest(".toolbar") &&
-              !e.target.closest(".link-btn")
-            ) {
-              editor.focus();
-            }
-          });
-
-        // Exec command helper
-        function exec(cmd, value = null) {
-          editor.focus();
-          // special handling for fontSize: convert numeric to execCommand param (1-7)
-          if (cmd === "fontSize") {
-            document.execCommand("fontSize", false, value);
-            return;
-          }
-          document.execCommand(cmd, false, value);
+      // === 2. Fungsi buka dan tutup popup ===
+      function openPopup() {
+        const popup = document.querySelector(".popup");
+        const overlay = document.querySelector(".overlay");
+        if (popup && overlay) {
+          popup.classList.add("active");
+          overlay.classList.add("active");
+        } else {
+          console.error("Popup belum dimuat!");
         }
+      }
 
-        // Toolbar button clicks
-        toolbar.addEventListener("click", (e) => {
-          const btn = e.target.closest("button");
-          if (!btn) return;
-          const cmd = btn.dataset.cmd;
-          const value = btn.dataset.value || null;
-
-          if (cmd === "formatBlock") {
-            // formatBlock expects block name like <h1>, <h2>
-            exec("formatBlock", value);
-          } else if (cmd) {
-            exec(cmd, value);
-          }
-
-          updateActiveStates();
-        });
-
-        // Link button: prompt URL and create link at selection
-        linkBtn.addEventListener("click", () => {
-          editor.focus();
-          const url = prompt(
-            "Enter URL (include http:// or https://):",
-            "https://"
-          );
-          if (url) {
-            // createLink will wrap selected text; if no selection, insert link text as url
-            document.execCommand("createLink", false, url);
-          }
-        });
-
-        // Keep toolbar button active state (basic)
-        function updateActiveStates() {
-          const buttons = toolbar.querySelectorAll("button[data-cmd]");
-          buttons.forEach((btn) => {
-            const cmd = btn.dataset.cmd;
-            let active = false;
-            try {
-              if (cmd === "formatBlock") {
-                // check current block (h1/h2)
-                const selection = window.getSelection();
-                if (selection.rangeCount) {
-                  const node = selection.anchorNode;
-                  const el = node.nodeType === 3 ? node.parentElement : node;
-                  const tag = el.closest && el.closest("h1, h2");
-                  if (tag) {
-                    active = tag.tagName.toLowerCase() === btn.dataset.value;
-                  } else {
-                    active = false;
-                  }
-                }
-              } else {
-                active = document.queryCommandState(cmd);
-              }
-            } catch (e) {
-              active = false;
-            }
-            btn.classList.toggle("active", active);
-          });
+      function closePopup() {
+        const popup = document.querySelector(".popup");
+        const overlay = document.querySelector(".overlay");
+        if (popup && overlay) {
+          popup.classList.remove("active");
+          overlay.classList.remove("active");
         }
+      }
 
-        // update on selection change / keyup / mouseup
-        editor.addEventListener("keyup", updateActiveStates);
-        editor.addEventListener("mouseup", updateActiveStates);
-        editor.addEventListener("keydown", function (e) {
-          // allow Ctrl/Cmd+B etc to work — update states slightly after
-          setTimeout(updateActiveStates, 10);
+      // === 3. Event listener biar klik luar popup nutup ===
+      document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("overlay")) {
+          closePopup();
+        }
+      });
+
+      // fungsi editor tetap sama kayak punyamu
+      const buttons = document.querySelectorAll(".toolbar button");
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const command = button.dataset.command;
+          const value = button.dataset.value || null;
+
+          if (command === "formatBlock") {
+            document.execCommand(command, false, value);
+          } else if (command === "removeFormat") {
+            document.execCommand("removeFormat", false, null);
+          } else {
+            document.execCommand(command, false, value);
+          }
+
+          if (
+            command !== "removeFormat" &&
+            command !== "formatBlock" &&
+            command !== "clear"
+          ) {
+            button.classList.toggle("active");
+          }
         });
-
-        // Optional: insert placeholder content when empty - already handled with CSS pseudo
-
-        // Keep title & editor content simple; you can wire save/export features as needed
-      })();
+      });
     </script>
   </body>
 </html>
