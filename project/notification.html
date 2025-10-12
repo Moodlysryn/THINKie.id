@@ -4,6 +4,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notification</title>
+    <link rel="stylesheet" href="../css/stylenotif.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
-  <body></body>
+  <body>
+    <!DOCTYPE html>
+    <html lang="id">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Notifikasi</title>
+      </head>
+      <body>
+        <div class="dashboard"></div>
+        <!-- Overlay blur -->
+        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+        <!-- Sidebar Notification -->
+        <div class="overlay" onclick="window.location.href='dashboard.html'">
+          <div class="popup" onclick="event.stopPropagation()">
+            <div class="notification" id="notifPanel">
+              <h3>NOTIFICATION</h3>
+
+              <div class="search-bar">
+                <input type="text" placeholder="Search" />
+                <button>Search</button>
+              </div>
+
+              <div class="notif-card">
+                <img src="../pct/p.jpeg" alt="profile" />
+                <div class="notif-info">
+                  <strong>Mutii</strong> wants to edit<br />
+                  <small>panjib@gmail.com</small>
+                </div>
+                <div class="notif-actions">
+                  <button class="deny" onclick="deny(this)">Deny</button>
+                  <button class="approve" onclick="approve(this)">
+                    Approve
+                  </button>
+                </div>
+              </div>
+
+              <div class="notif-card">
+                <img src="../pct/q.jpeg" alt="profile" />
+                <div class="notif-info">
+                  <strong>Rinda</strong> wants to edit<br />
+                  <small>juwanit823@gmail.com</small>
+                </div>
+                <div class="notif-actions">
+                  <button class="deny" onclick="deny(this)">Deny</button>
+                  <button class="approve" onclick="approve(this)">
+                    Approve
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function toggleSidebar() {
+            document.getElementById("notifPanel").classList.toggle("active");
+            document.getElementById("overlay").classList.toggle("active");
+          }
+          function approve(btn) {
+            const card = btn.closest(".notif-card");
+            card.style.border = "1px solid #86efac";
+            card.style.background = "#f0fdf4";
+            card.querySelector(".notif-info").innerHTML +=
+              "<br><small style='color:green'>✔ Approved</small>";
+            btn.parentElement.innerHTML = ""; // remove buttons
+          }
+
+          function deny(btn) {
+            const card = btn.closest(".notif-card");
+            card.style.border = "1px solid #fca5a5";
+            card.style.background = "#fef2f2";
+            card.querySelector(".notif-info").innerHTML +=
+              "<br><small style='color:red'>✖ Denied</small>";
+            btn.parentElement.innerHTML = ""; // remove buttons
+          }
+        </script>
+      </body>
+    </html>
+  </body>
 </html>

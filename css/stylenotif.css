@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+}
+.dashboard {
+  min-height: 100vh;
+  background: url("../pct/dashboard.png") center/cover no-repeat;
+  padding: 40px;
+  color: white;
+  z-index: 1;
+}
+
+/* Overlay blur */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sidebar panel */
+.notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #ddd;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  overflow-y: auto;
+  border-top-left-radius: 50px;
+  z-index: 100;
+}
+
+.notification h3 {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin-top: 30px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: #ccc;
+}
+.search-bar button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+/* Card */
+.notif-card {
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+  transition: 0.2s;
+  margin-top: 20px;
+}
+
+.notif-card:hover {
+  background: #f0f9ff;
+  border-color: #c7e3ff;
+}
+
+.notif-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.notif-info {
+  flex: 1;
+  font-size: 14px;
+  color: #444;
+}
+
+.notif-info strong {
+  font-size: 15px;
+  color: #111;
+}
+
+.notif-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.notif-actions button {
+  padding: 4px 8px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.notif-actions .deny {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.notif-actions .approve {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.notif-actions .deny:hover {
+  background: #fca5a5;
+}
+
+.notif-actions .approve:hover {
+  background: #86efac;
+}

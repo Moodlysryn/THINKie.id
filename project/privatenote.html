@@ -20,38 +20,37 @@
         <i class="fa-solid fa-image" title="Insert image"></i>
         <i class="fa-solid fa-bell" title="Notifications"></i>
       </div>
-      <div class="editor-area">
-        <input id="noteTitle" class="title-input" placeholder="Title" />
-        <!-- Contentediable area  (rish area) -->
-        <div
-          id="editor"
-          class="content"
-          contenteditable="true"
-          data-placeholder="Your text..."
-        ></div>
+      <div class="tittle-page">
+        <h5 id="Title" contenteditable="true">Tittle</h5>
       </div>
+      <div
+        id="editor"
+        class="content"
+        contenteditable="true"
+        data-placeholder="Your text..."
+      ></div>
 
       <!-- footer contains link button + toolbar-->
-      <div class="editor-footer" aria-hidden="false">
-        <button id="linkBtn" class="link-btn" title="Insert Link">
-          <i class="fa-solid fa-link"></i>
+
+      <div class="toolbar" role="toolbar" aria-label="Formatting toolbar">
+        <button data-cmd="formatBlock" data-value="h1" title="H1">H1</button>
+        <button data-cmd="formatBlock" data-value="h2" title="H2">H2</button>
+        <button data-cmd="fontSize" data-value="3" title="Aa">Aa</button>
+        <button data-cmd="bold" title="Bold"><b>B</b></button>
+        <button data-cmd="italic" title="Italic"><i>I</i></button>
+        <button data-cmd="underline" title="Underline"><u>U</u></button>
+        <button data-cmd="strikeThrough" title="Strike">
+          <i class="fa-solid fa-strikethrough"></i>
         </button>
-        <div class="toolbar" role="toolbar" aria-label="Formatting toolbar">
-          <button data-cmd="formatBlock" data-value="h1" title="H1">H1</button>
-          <button data-cmd="formatBlock" data-value="h2" title="H2">H2</button>
-          <button data-cmd="fontSize" data-value="3" title="Aa">Aa</button>
-          <button data-cmd="bold" title="Bold"><b>B</b></button>
-          <button data-cmd="italic" title="Italic"><i>I</i></button>
-          <button data-cmd="underline" title="Underline"><u>U</u></button>
-          <button data-cmd="strikeThrough" title="Strike">
-            <i class="fa-solid fa-strikethrough"></i>
-          </button>
-        </div>
       </div>
     </div>
+
     <script>
       // Basic rich text toolbar using document.execCommand (simple demo)
       (function () {
+        const titleEl = document.getElementById("Title");
+        const STORAGE_KEY = "Title";
+
         const editor = document.getElementById("editor");
         const toolbar = document.querySelector(".toolbar");
         const linkBtn = document.getElementById("linkBtn");

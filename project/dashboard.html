@@ -14,29 +14,38 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/styleboard.css" />
   </head>
   <body>
     <div class="container">
       <!-- Header -->
       <header class="header">
-        <div>
-          <a href="../project/folder.html"
-            ><i class="fa-solid fa-square-plus"></i
-          ></a>
-          <a href="../project/profile.html"
-            ><img src="../pct/profile.jpeg" alt="img" class="profile-image"
-          /></a>
-          <a href="../project/notification.html"
-            ><i class="fa-solid fa-bell"></i
-          ></a>
-          <br />
-          <br />
-          <h1>HELLO, KIE</h1>
-          <p>How are you today?</p>
+        <div class="header-left">
+          <a href="../project/folder.html">
+            <i class="fa-solid fa-square-plus"></i>
+          </a>
+          <a href="../project/profile.html">
+            <img src="../pct/profile.jpeg" alt="img" class="profile-image" />
+          </a>
+        </div>
+        <div class="header-right">
+          <a href="../project/notification.html">
+            <i class="fa-solid fa-bell"></i>
+          </a>
         </div>
       </header>
+      <br />
+
+      <!-- Greeting -->
+      <div class="greeting">
+        <h1>HELLO, KIE</h1>
+        <p>How are you today?</p>
+      </div>
+      <br />
 
       <!-- Search -->
       <div class="search-bar">
@@ -60,6 +69,119 @@
       <br />
       <br />
       <h2>Activity History</h2>
+
+      <div class="row g-3">
+        <!-- Groceries -->
+        <div class="col-md-4">
+          <div class="card-custom h-100" onclick="openPage('grocier.html')">
+            <h3 class="mb-3">Groceries</h3>
+            <div class="card-custom">
+              <p class="small">Checklist belanja kamu:</p>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="item1"
+                  checked
+                />
+                <label class="form-check-label" for="item1">Cooking oil</label>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="item2"
+                  checked
+                />
+                <label class="form-check-label" for="item2"
+                  >Croissants sugar</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="item3"
+                  checked
+                />
+                <label class="form-check-label" for="item3"
+                  >Instant noodles</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="item4" />
+                <label class="form-check-label" for="item4"
+                  >Coffee and tea</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="item5" />
+                <label class="form-check-label" for="item5"
+                  >Garlic, onions</label
+                >
+              </div>
+            </div>
+            <div
+              class="avatars-wrapper mt-3 p-1 bg-white rounded-pill d-flex align-items-center"
+              style="width: fit-content"
+            >
+              <img
+                src="https://i.pravatar.cc/40?img=1"
+                class="avatar-img"
+                alt="profile1"
+              />
+              <img
+                src="https://i.pravatar.cc/40?img=2"
+                class="avatar-img"
+                alt="profile2"
+              />
+              <img
+                src="https://i.pravatar.cc/40?img=3"
+                class="avatar-img"
+                alt="profile3"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Kisi Kisi PPKn -->
+        <div class="col-md-4">
+          <div class="card-custom h-100" onclick="openPage('kisikisi.html')">
+            <h5>Kisi Kisi PPKn</h5>
+            <p class="small">Materi kelas XI</p>
+            <ol class="small">
+              <li>Partisipasi warga negara dalam pertahanan keamanan</li>
+              <li>Tantangan, hambatan dan gangguan terhadap NKRI</li>
+              <li>...</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Consistent -->
+        <div class="col-md-4">
+          <div class="card-custom h-100" onclick="openPage('consistent.html')">
+            <h5>Consistent</h5>
+            <p class="small">2 of 2 tasks</p>
+            <ul class="list-group">
+              <li class="list-group-item">Deep cleaning</li>
+              <li class="list-group-item">Drink 1L of water</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function openPage(page) {
+        window.location.href = page;
+      }
+    </script>
   </body>
 </html>

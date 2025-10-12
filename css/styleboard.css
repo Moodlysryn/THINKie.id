@@ -14,53 +14,59 @@ body {
 .container {
   background-color: #fff;
   color: #000;
-  width: 400px;
+  width: 100%;
   border-radius: 10px;
   padding: 20px;
 }
-.icons {
-  display: flex;
-  align-items: center; /* sejajarkan vertikal */
-  gap: 12px; /* kasih jarak antar item */
-}
+/* Header utama */
 .header {
   display: flex;
-  justify-content: space-between; /* bagi kiri - kanan */
-  align-items: center; /* rata tengah vertikal */
-  padding: 15px 9px;
+  justify-content: space-between; /* kiri & kanan */
+  align-items: center; /* vertikal sejajar */
+  padding: 12px 20px;
   background: #fff;
-  border-bottom: 1px solid #ddd;
 }
 
-.fa-square-plus {
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
+/* Bagian kiri (plus + profile) */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* jarak antar icon */
+}
+
+/* Bagian kanan (lonceng) */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.fa-bell {
+  font-size: 25px;
   color: #000;
-  margin-top: 15px;
+  cursor: pointer;
 }
-add-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 15px;
-  height: 15px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border-top-right-radius: 12px;
+.fa-square-plus {
+  font-size: 25px;
+  cursor: pointer;
+  color: #000;
 }
+
+/* Avatar */
 .profile-image {
-  width: 31px;
-  height: 31px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #eee;
+  margin-top: 3px;
 }
-.fa-bell {
-  font-size: 29px;
-  text-decoration: none;
-  color: #000;
-  padding-left: 230px;
+
+/* Bagian kanan header (lonceng) */
+.header-right {
+  display: flex;
+  align-items: center;
 }
+
 .top-bar {
   display: flex;
   flex-direction: column;
@@ -90,6 +96,7 @@ add-btn::after {
   font-size: 18px;
   font-weight: bold;
   padding: 10px;
+  display: flex;
 }
 
 .search-bar {
@@ -139,4 +146,37 @@ add-btn::after {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+.card-custom {
+  background-color: #000;
+  color: #fff;
+  border-radius: 20px;
+  padding: 15px;
+}
+.list-group-item {
+  background: transparent;
+  color: #fff;
+  border: none;
+  padding-left: 0;
+}
+.card-custom:hover {
+  transform: scale(1.02);
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+.avatars-wrapper {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.avatar-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #fff; /* biar ada border putih antar avatar */
+  margin-left: -8px; /* overlap efek */
+}
+
+.avatar-img:first-child {
+  margin-left: 0; /* avatar pertama gak ketiban */
 }
