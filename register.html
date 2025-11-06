@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="../css/styleregis.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <a href="./welcome.html"></a>
+        <button class="back-btn">
+          <a href="./welcome.html"><i class="fas fa-arrow-left"></i></a>
+        </button>
+        <h1><strong>LET'S GET</strong><br /><strong>STARTED</strong></h1>
+
+        <br />
+        <div class="input-group">
+          <label><i class="fas fa-envelope"></i></label>
+          <input
+            type="email"
+            placeholder="Email"
+            id="email"
+            autocomplete="new-email"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label><i class="fas fa-lock"></i></label>
+          <input
+            type="password"
+            placeholder="Password"
+            autocomplete="new-password"
+            required
+          />
+          <i
+            class="fas fa-eye toggle-password"
+            onclick="toggleVisibility('password', this)"
+          ></i>
+        </div>
+
+        <div class="input-group">
+          <label><i class="fas fa-lock"></i></label>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            autocomplete="new-password"
+            required
+          />
+          <i
+            class="fas fa-eye toggle-password"
+            onclick="toggleVisibility('confirm-password', this)"
+          ></i>
+        </div>
+        <button class="signup-btn">
+          <a href="./dashboard.html" class="SignUp">SIGN UP</a>
+        </button>
+        <script>
+          document
+            .getElementById("formRegister")
+            .addEventListener("submit", function (event) {
+              event.preventDefault(); // cegah form langsung submit
+
+              let email = document.getElementById("email").value.trim();
+              let password = document.getElementById("password").value.trim();
+              let confirmPassword = document
+                .getElementById("confirmPassword")
+                .value.trim();
+
+              if (email === "") {
+                alert("Email harus diisi!");
+                return;
+              }
+
+              let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!regex.test(email)) {
+                alert("Format email tidak valid!");
+                return;
+              }
+
+              if (password === "") {
+                alert("Password harus diisi!");
+                return;
+              }
+
+              if (confirmPassword !== password) {
+                alert("Konfirmasi password tidak sama!");
+                return;
+              }
+
+              alert("Register berhasil!");
+            });
+        </script>
+        <p id="warning-message" class="hidden"></p>
+        <p class="login-link">
+          <br />
+          <br />
+          <br />
+          <br />
+          Already have an account? <a href="./login.html">Login</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
